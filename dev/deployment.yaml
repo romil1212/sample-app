@@ -2,18 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: development-deployment
+  namespace: dev
+  labels:
+    app: hello
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: dev-app
+      app: hello
   template:
     metadata:
       labels:
-        app: dev-app
+        app: hello
     spec:
       containers:
-      - name: dev-container
-        image: <todo>
+      - name: hello-app
+        image: europe-west1-docker.pkg.dev/<YOUR_PROJECT_ID>/my-repository/sample-app-dev:v1.0
         ports:
         - containerPort: 8080
